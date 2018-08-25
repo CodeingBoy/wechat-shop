@@ -43,5 +43,3 @@ typings/
 sh/
 # ignore test sdk.config.json
 sdk.config.json
-# ignore project.config.json
-project.config.json
