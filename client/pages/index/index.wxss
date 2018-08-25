@@ -3,6 +3,7 @@
   margin: 25rpx 35rpx;
   position: relative;
   height: 400rpx;
+  border-radius: 13rpx;
 }
 
 #recommended-product-name{
@@ -10,8 +11,11 @@
   left: 20rpx;
   top: 35rpx;
   vertical-align: center;
-  font-size: 35rpx;
-  line-height: 49rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  line-height: 39rpx;
+  display: flex;
+  align-items: center;
 }
 
 #recommended-product-image{
@@ -38,10 +42,14 @@
 
 .line-red-image{
   width: 24rpx;
-  height: 36rpx;
+  height: 39rpx;
   margin: 0 10rpx;
 }
 
 #division-line{
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  font-weight: bold;
 }
