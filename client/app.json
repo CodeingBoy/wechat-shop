@@ -11,5 +11,31 @@
     "navigationBarBackgroundColor": "#F6F6F6",
     "navigationBarTitleText": "Wafer Quick Start",
     "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "Home",
+      "iconPath": "images/home.png",
+      "selectedIconPath": "images/home-sel.png"
+    },
+    {
+      "pagePath": "pages/order/order",
+      "text": "Order",
+      "iconPath": "images/order.png",
+      "selectedIconPath": "images/order-sel.png"
+    },
+    {
+      "pagePath": "pages/cart/cart",
+      "text": "Cart",
+      "iconPath": "images/cart.png",
+      "selectedIconPath": "images/cart-sel.png"
+    },
+    {
+      "pagePath": "pages/user/user",
+      "text": "Me",
+      "iconPath": "images/user.png",
+      "selectedIconPath": "images/user-sel.png"
+    }]
   }
 }
