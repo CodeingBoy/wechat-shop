@@ -1,1 +1,19 @@
-<image class="bg" src="/images/bg.png"/>
+<image class="bg" src="/images/bg.png" />
+<view id="recommended-product">
+  <view id="recommended-product-name">
+    <image class="line-red-image" src="/images/line-red.png" />
+    <text>{{recommendedProduct.name}}</text>
+    <image class="line-red-image" src="/images/line-red.png" />
+  </view>
+  <view id="recommended-product-image">
+    <image src="{{recommendedProduct.image}}" mode="aspectFit" />
+  </view>
+  <view id="recommended-promotion-image">
+    <image src="{{recommendedProduct.promotionImage}}" mode="widthFix" />
+  </view>
+</view>
+<view id="division-line">
+    <image class="line-red-image" src="/images/line-red.png" />
+    <text>Products</text>
+    <image class="line-red-image" src="/images/line-red.png" />
+</view>
