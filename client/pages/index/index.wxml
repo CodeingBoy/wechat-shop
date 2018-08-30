@@ -18,60 +18,15 @@
   <image class="line-red-image" src="/images/line-red.png" />
 </view>
 <view id="product-list">
-  <view class="product">
-    <image class="product-image" src="https://s3.cn-north-1.amazonaws.com.cn/u-img/product1.jpg" mode="widthFix" />
+  <view class="product" wx:for="{{productList}}">
+    <image class="product-image" src="{{item.image}}" mode="widthFix" />
     <view class="product-name">
-      Wallet
+      {{item.name}}
     </view>
     <view class="product-info">
       <view class="product-price">
         <view class="price-tag">￥</view>
-        200
-      </view>
-      <view class="add-product-to-cart">
-        +
-      </view>
-    </view>
-  </view>
-  <view class="product">
-    <image class="product-image" src="https://s3.cn-north-1.amazonaws.com.cn/u-img/product1.jpg" mode="widthFix" />
-    <view class="product-name">
-      Wallet
-    </view>
-    <view class="product-info">
-      <view class="product-price">
-        <view class="price-tag">￥</view>
-        200
-      </view>
-      <view class="add-product-to-cart">
-        +
-      </view>
-    </view>
-  </view>
-  <view class="product">
-    <image class="product-image" src="https://s3.cn-north-1.amazonaws.com.cn/u-img/product1.jpg" mode="widthFix" />
-    <view class="product-name">
-      Wallet
-    </view>
-    <view class="product-info">
-      <view class="product-price">
-        <view class="price-tag">￥</view>
-        200
-      </view>
-      <view class="add-product-to-cart">
-        +
-      </view>
-    </view>
-  </view>
-  <view class="product">
-    <image class="product-image" src="https://s3.cn-north-1.amazonaws.com.cn/u-img/product1.jpg" mode="widthFix" />
-    <view class="product-name">
-      Wallet
-    </view>
-    <view class="product-info">
-      <view class="product-price">
-        <view class="price-tag">￥</view>
-        200
+        {{item.price}}
       </view>
       <view class="add-product-to-cart">
         +
