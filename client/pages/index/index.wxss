@@ -1,4 +1,4 @@
-#recommended-product{
+#recommended-product {
   background-color: white;
   margin: 25rpx 35rpx;
   position: relative;
@@ -6,7 +6,7 @@
   border-radius: 13rpx;
 }
 
-#recommended-product-name{
+#recommended-product-name {
   position: absolute;
   left: 20rpx;
   top: 35rpx;
@@ -18,7 +18,7 @@
   align-items: center;
 }
 
-#recommended-product-image{
+#recommended-product-image {
   position: relative;
   left: 150rpx;
   text-align: right;
@@ -26,30 +26,73 @@
   height: 400rpx;
 }
 
-#recommended-product-image image{
+#recommended-product-image image {
   height: 400rpx;
 }
 
-#recommended-promotion-image{
+#recommended-promotion-image {
   position: absolute;
   left: 25rpx;
   bottom: 0;
 }
 
-#recommended-promotion-image image{
+#recommended-promotion-image image {
   width: 250rpx;
 }
 
-.line-red-image{
+.line-red-image {
   width: 24rpx;
   height: 39rpx;
   margin: 0 10rpx;
 }
 
-#division-line{
+#division-line {
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 28rpx;
   font-weight: bold;
+}
+
+#product-list {
+  margin-top: 10rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product {
+  position: relative;
+  width: 330rpx;
+  padding: 10rpx;
+  margin: 10rpx 10rpx;
+  background-color: white;
+  border-radius: 3rpx;
+}
+
+.product-image {
+  width: 100%;
+}
+
+.product-info {
+  display: flex;
+}
+
+.product-name, .product-info{
+  margin-top: 5rpx;
+  font-size: 30rpx;
+  line-height: 42rpx;
+}
+
+.price-tag, .add-product-to-cart {
+  background-color: #f5e069;
+  border-radius: 50%;
+  width: 40rpx;
+  height: 40rpx;
+  padding: 3rpx;
+  text-align: center;
+}
+
+.product-price {
+  flex-grow: 1;
+  display: flex;
 }
