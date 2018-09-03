@@ -18,7 +18,7 @@
   <image class="line-red-image" src="/images/line-red.png" />
 </view>
 <view id="product-list">
-  <view class="product" wx:for="{{productList}}">
+  <navigator class="product" wx:for="{{productList}}">
     <image class="product-image" src="{{item.image}}" mode="widthFix" />
     <view class="product-name">
       {{item.name}}
@@ -32,5 +32,5 @@
         +
       </view>
     </view>
-  </view>
+  </navigator>
 </view>
