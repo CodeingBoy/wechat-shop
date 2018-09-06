@@ -1,104 +1,87 @@
 // pages/index/index.js
-Page({
+var qcloud = require('../../vendor/wafer2-client-sdk/index.js');
 
+Page({
   /**
    * 页面的初始数据
    */
   data: {
-    productList: [{
-      id: 1,
-      image: 'https://s3.cn-north-1.amazonaws.com.cn/u-img/product1.jpg',
-      name: 'Item 1',
-      price: 100,
-      source: 'China-GuangDong',
-    }, {
-      id: 2,
-      image: 'https://s3.cn-north-1.amazonaws.com.cn/u-img/product2.jpg',
-      name: 'Item 2',
-      price: 200,
-      source: 'China-GuangDong',
-    }, {
-      id: 3,
-      image: 'https://s3.cn-north-1.amazonaws.com.cn/u-img/product3.jpg',
-      name: 'Item 3',
-      price: 300,
-      source: 'China-GuangDong',
-    }, {
-      id: 4,
-      image: 'https://s3.cn-north-1.amazonaws.com.cn/u-img/product4.jpg',
-      name: 'Item 4',
-      price: 400,
-      source: 'China-GuangDong',
-    }, {
-      id: 5,
-      image: 'https://s3.cn-north-1.amazonaws.com.cn/u-img/product5.jpg',
-      name: 'Item 5',
-      price: 500,
-      source: 'China-GuangDong',
-    }],
-    recommendedProduct: {
-      id: 1,
-      image: 'https://s3.cn-north-1.amazonaws.com.cn/u-img/product1.jpg',
-      promotionImage: '/images/discount.png',
-      name: 'Item 1',
-      price: 100,
-      source: 'China-GuangDong',
-    }
+    productList: [],
+    recommendedProduct: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-  
+  onLoad: function(options) {
+    const page = this;
+    qcloud.request({
+      url: 'https://5p4lrfob.qcloud.la/weapp/product',
+      success: function(response) {
+        if (response.data.code !== 0) {
+          console.log(response);
+          return;
+        }
+        var recommendedProduct = response.data.data[0];
+        recommendedProduct.promotionImage = '/images/discount.png';
+
+        page.setData({
+          "productList": response.data.data,
+          "recommendedProduct": recommendedProduct
+        });
+      },
+      fail: function(err) {
+        console.log(err);
+      }
+    });
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-  
+  onReady: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-  
+  onShow: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-  
+  onHide: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
-  
+  onUnload: function() {
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-  
+  onPullDownRefresh: function() {
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-  
+  onReachBottom: function() {
+
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-  
+  onShareAppMessage: function() {
+
   }
 })
