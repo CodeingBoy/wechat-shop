@@ -2,8 +2,10 @@
  * 小程序配置文件
  */
 
+const secrets = require('env.js');
+
 // 此处主机域名修改成腾讯云解决方案分配的域名
-var host = 'https://123456.qcloud.la';
+var host = secrets.baseUrl;
 
 var config = {
 
@@ -21,7 +23,10 @@ var config = {
         tunnelUrl: `${host}/weapp/tunnel`,
 
         // 上传图片接口
-        uploadUrl: `${host}/weapp/upload`
+        uploadUrl: `${host}/weapp/upload`,
+
+        // fetch product list
+        productList: `${host}/weapp/product`
     }
 };
 
