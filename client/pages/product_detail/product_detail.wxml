@@ -3,7 +3,7 @@
   <text id="name">{{product.name}}</text>
   <text id="source">{{product.source}}</text>
   <view id="price">
-    <text class="price-tag">￥</text> {{product.price}}
+    <view class="price-tag">￥</view> {{product.price}}
   </view>
 </view>
 <view id="other-info">
@@ -18,7 +18,10 @@
   <view id="comments">
     <view id="comments-info">
       <text id="comments-info-title">Comments</text>
-      <text id="comments-count">666 comments</text>
+      <view id="comments-count">
+      666 comments
+      <image src="/images/grey-arrow.png" class="icon-grey-arrow" />
+      </view>
     </view>
     <view class="comment">
       test
