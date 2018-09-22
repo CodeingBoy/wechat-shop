@@ -1,24 +1,48 @@
 // pages/product_detail.js
+const qcloud = require('../../vendor/wafer2-client-sdk/index.js');
+const config = require('../../config.js');
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    product: {
-      id: 1,
-      image: 'https://product-1256088332.cos.ap-guangzhou.myqcloud.com/product2.jpg',
-      name: '商品',
-      price: 480.5,
-      source: '国内·广东'
-    },
+    product: {},
+  },
+  loadProductData: function(productId){
+    const page = this;
+    qcloud.request({
+      url: config.service.productDetail + productId,
+      success: function(response){
+        const productInfo = response.data.data;
+        page.setData({product: productInfo});
+
+        page.onFinishLoadingProductDetail();
+      },
+      fail: function(){
+        wx.showToast({
+          title: 'Fail loading detail',
+          icon: 'none'
+        })
+
+        page.onFinishLoadingProductDetail()
+      }  
+    })
+  },
+  onFinishLoadingProductDetail: function(){
+    wx.hideLoading();
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    const productId = options.id;
+    wx.showLoading({
+      title: 'Loading',
+    })
+    this.loadProductData(productId);
   },
 
   /**

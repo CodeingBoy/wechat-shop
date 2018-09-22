@@ -26,7 +26,10 @@ var config = {
         uploadUrl: `${host}/weapp/upload`,
 
         // fetch product list
-        productList: `${host}/weapp/product`
+        productList: `${host}/weapp/product`,
+
+        // fetch product detail
+        productDetail: `${host}/weapp/product/`
     }
 };
 
