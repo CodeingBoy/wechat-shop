@@ -7,6 +7,10 @@
   align-items: center;
 }
 
+.user-settings > view:last-child {
+  border-bottom: none;
+}
+
 .user-settings-text {
   flex-grow: 1;
 }
