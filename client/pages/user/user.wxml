@@ -7,15 +7,15 @@
       <text class="login-prompt-tips">Click "Wechat Login" for more features</text>
     </view>
   </view>
-  <view class="wechat-login-button">
+  <button class="wechat-login-button" open-type="getUserInfo" bind:getuserinfo="onGetUserInfo">
     Wechat Login
-  </view>
+  </button>
 </view>
 <view wx:else>
   <view class="user-info-card">
-    <image class="user-avatar" src="{{userInfo.avatar}}" mode="widthFix" />
+    <image class="user-avatar" src="{{userInfo.avatarUrl}}" mode="widthFix" />
     <view class="user-info-text">
-      <text class="user-info-name">{{userInfo.nickname}}</text>
+      <text class="user-info-name">{{userInfo.nickName}}</text>
     </view>
   </view>
   <view class="user-settings card">

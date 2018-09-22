@@ -59,8 +59,9 @@ page {
   border-radius: 5rpx;
   text-align: center;
   padding: 15rpx 50rpx;
-  width: 300rpx;
+  width: 500rpx;
   font-size: 40rpx;
+  line-height: 56rpx;
 }
 
 

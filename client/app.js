@@ -15,6 +15,6 @@ module.exports = {
     return userInfo;
   },
   setUserInfo: function (info) {
-    userinfo = info;
+    userInfo = info;
   }
 };
