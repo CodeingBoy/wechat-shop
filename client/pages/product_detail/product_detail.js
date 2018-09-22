@@ -15,20 +15,28 @@ Page({
     qcloud.request({
       url: config.service.productDetail + productId,
       success: function(response){
+        if(response.data.code === 0){
+          page.onGetProductDetailFail();
+          return;
+        }
+
         const productInfo = response.data.data;
         page.setData({product: productInfo});
 
         page.onFinishLoadingProductDetail();
       },
       fail: function(){
-        wx.showToast({
-          title: 'Fail loading detail',
-          icon: 'none'
-        })
-
-        page.onFinishLoadingProductDetail()
+        page.onGetProductDetailFail();
+        page.onFinishLoadingProductDetail();
       }  
     })
+  },
+  onGetProductDetailFail: function(){
+    wx.showToast({
+      title: 'Fail loading detail',
+      icon: 'none'
+    });
+    wx.navigateBack({});
   },
   onFinishLoadingProductDetail: function(){
     wx.hideLoading();
