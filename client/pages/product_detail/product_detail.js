@@ -10,42 +10,44 @@ Page({
   data: {
     product: {},
   },
-  loadProductData: function(productId){
+  loadProductData: function(productId) {
     const page = this;
     qcloud.request({
       url: config.service.productDetail + productId,
-      success: function(response){
-        if(response.data.code === 0){
+      success: function(response) {
+        if (response.data.code !== 0) {
           page.onGetProductDetailFail();
           return;
         }
 
         const productInfo = response.data.data;
-        page.setData({product: productInfo});
+        page.setData({
+          product: productInfo
+        });
 
         page.onFinishLoadingProductDetail();
       },
-      fail: function(){
+      fail: function() {
         page.onGetProductDetailFail();
         page.onFinishLoadingProductDetail();
-      }  
+      }
     })
   },
-  onGetProductDetailFail: function(){
+  onGetProductDetailFail: function() {
     wx.showToast({
       title: 'Fail loading detail',
       icon: 'none'
     });
     wx.navigateBack({});
   },
-  onFinishLoadingProductDetail: function(){
+  onFinishLoadingProductDetail: function() {
     wx.hideLoading();
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     const productId = options.id;
     wx.showLoading({
       title: 'Loading',
@@ -56,49 +58,49 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-  
+  onReady: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-  
+  onShow: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-  
+  onHide: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
-  
+  onUnload: function() {
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-  
+  onPullDownRefresh: function() {
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-  
+  onReachBottom: function() {
+
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-  
+  onShareAppMessage: function() {
+
   }
 })
