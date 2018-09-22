@@ -1,1 +1,17 @@
-/* pages/user/user.wxss */
+.user-settings > view {
+  display: flex;
+  padding: 30rpx;
+  border-bottom: 1px solid lightgray;
+  font-size: 35rpx;
+  line-height: 49rpx;
+  align-items: center;
+}
+
+.user-settings-text {
+  flex-grow: 1;
+}
+
+.user-settings-arrow {
+  width: 11rpx;
+  height: 18rpx;
+}

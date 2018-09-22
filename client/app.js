@@ -7,3 +7,14 @@ App({
         qcloud.setLoginUrl(config.service.loginUrl)
     }
 })
+
+var userInfo = null;
+
+module.exports = {
+  getUserInfo: function () {
+    return userInfo;
+  },
+  setUserInfo: function (info) {
+    userinfo = info;
+  }
+};

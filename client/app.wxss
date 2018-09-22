@@ -10,3 +10,57 @@ page {
   height: 144rpx;
   z-index: -1;
 }
+
+.card {
+  margin: 30rpx 20rpx;
+  border-radius: 3rpx;
+  background-color: white;
+}
+
+.login-prompt-card, .user-info-card {
+  display: flex;
+  flex-direction: row;
+  margin: 30rpx 20rpx;
+  border-radius: 3rpx;
+  background-color: white;
+  height: 100rpx;
+  position: relative;
+  padding: 50rpx 20rpx;
+}
+
+.login-prompt-default-avatar, .user-avatar {
+  height: 100rpx;
+  width: 100rpx;
+  background-color: #f5e06a;
+  border-radius: 50%;
+}
+
+.login-prompt-texts, .user-info-text {
+  margin-left: 30rpx;
+}
+
+.login-prompt-status {
+  display: block;
+  font-size: 40rpx;
+  line-height: 56rpx;
+  margin-bottom: 5rpx;
+}
+
+.login-prompt-tips {
+  display: block;
+  font-size: 30rpx;
+  line-height: 42rpx;
+  opacity: 0.75;
+}
+
+.wechat-login-button {
+  background-color: #f5e06a;
+  margin: 0 auto;
+  border-radius: 5rpx;
+  text-align: center;
+  padding: 15rpx 50rpx;
+  width: 300rpx;
+  font-size: 40rpx;
+}
+
+
