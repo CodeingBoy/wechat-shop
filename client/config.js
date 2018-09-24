@@ -32,6 +32,8 @@ var config = {
         productDetail: `${host}/weapp/product/`,
 
         buyProduct: `${host}/weapp/buy`,
+
+        orderList: `${host}/weapp/order`
     }
 };
 

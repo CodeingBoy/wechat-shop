@@ -5,55 +5,45 @@ const app = getApp();
 Page({
   data: {
     userInfo: null,
-    orders: [
-      {
-        id: 0,
-        list: [{
-          count: 1,
-          image: 'https://shop-dev-1252565845.cos.ap-guangzhou.myqcloud.com/product1.jpg',
-          name: '商品1',
-          price: 50.5,
-        }]
-      },
-      {
-        id: 1,
-        list: [{
-          count: 1,
-          image: 'https://shop-dev-1252565845.cos.ap-guangzhou.myqcloud.com/product1.jpg',
-          name: '商品1',
-          price: 50.5,
-        },
-        {
-          count: 1,
-          image: 'https://shop-dev-1252565845.cos.ap-guangzhou.myqcloud.com/product1.jpg',
-          name: '商品2',
-          price: 50.5,
-        }
-        ]
-      },
-      {
-        id: 2,
-        list: [{
-          count: 1,
-          image: 'https://shop-dev-1252565845.cos.ap-guangzhou.myqcloud.com/product1.jpg',
-          name: '商品2',
-          price: 50.15,
-        }]
-      }
-    ]
+    orders: []
   },
-  onShow: function () {
-    this.refreshUserInfo();
+  onShow: function() {
+    this.refreshUserInfo(() => {
+      this.refreshUserOrders();
+    });
   },
-  onTapLoginButton: function (response) {
+  onTapLoginButton: function(response) {
     const page = this;
-    app.onTapLoginButton(response, function (response) {
-      page.refreshUserInfo();
+    app.onTapLoginButton(response, function(response) {
+      page.refreshUserInfo(() => {
+        page.refreshUserOrders();
+      });      
     });
   },
-  refreshUserInfo: function () {
+  refreshUserInfo: function(succeed, fail) {
+    const userInfo = app.getUserInfo();
     this.setData({
-      userInfo: app.getUserInfo()
+      userInfo: userInfo
     });
+    if (userInfo) {
+      typeof succeed === 'function' && succeed();
+    } else {
+      typeof fail === 'function' && fail();
+    }
+  },
+  refreshUserOrders: function() {
+    const page = this;
+    qcloud.request({
+      url: config.service.orderList,
+      login: true,
+      success: function(response) {
+        page.setData({
+          orders: response.data.data
+        });
+      },
+      fail: function() {
+
+      }
+    })
   }
 })
