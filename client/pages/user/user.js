@@ -1,6 +1,7 @@
 // pages/user/user.js
 
 const qcloud = require('../../vendor/wafer2-client-sdk/index.js');
+const config = require('../../config.js');
 const app = require("../../app.js");
 
 Page({
@@ -20,21 +21,26 @@ Page({
       userInfo: app.getUserInfo()
     });
   },
-  onGetUserInfo: function(response) {
+  onTapLoginButton: function(response) {
+    wx.showLoading({
+      title: 'Logging you in'
+    });
+
     const page = this;
     if (response.detail.userInfo) {
       qcloud.login({
         success: function(response) {
-          console.log(response);
           app.setUserInfo(response);
           page.refreshUserInfo();
+          page.onCompleteLoading();
         },
         fail: function(err) {
           console.log(err);
           wx.showToast({
-            title: 'Login fail, please try again later',
+            title: 'Login failed, try again later',
             icon: 'none'
           });
+          page.onCompleteLoading();
         }
       });
     } else {
@@ -42,9 +48,16 @@ Page({
         title: 'Login cancelled',
         icon: 'none'
       });
+      page.onCompleteLoading();
     }
   },
-  refreshUserInfo: function(){
-    this.setData({userInfo: app.getUserInfo()});
+  onCompleteLoading: function() {
+    wx.hideLoading();
+  },
+  refreshUserInfo: function() {
+    this.setData({
+      userInfo: app.getUserInfo()
+    });
   }
+
 })
