@@ -12,8 +12,26 @@
   </button>
 </view>
 <view wx:else>
-  <view id="empty-order" class="card">
+  <view id="empty-order" class="card" wx:if="{{!orders}}">
     <image src="/images/order.png" id="empty-order-image" class="image-order" mode="widthFix" />
     <text id="empty-order-text">No orders yet</text>
+  </view>
+  <view id="order-list" wx:else>
+    <view id="order-list-text">
+      <image class="image-line-black" src="/images/line-black.png" />Finished
+    </view>
+    <view class="order-card card" wx:for="{{orders}}">
+      <view class="item-info" wx:for="{{item.list}}">
+        <image class="item-info-image" src="{{item.image}}" mode="widthFix" />
+        <view class="item-info-detail">
+          <view class="item-info-name-and-price">
+            <text class="item-info-name">{{item.name}}</text>
+            <text class="item-info-price">￥{{item.price}}</text>
+          </view>
+          <button class="item-info-comment-button">Comment</button>
+          <text class="item-info-count">x{{item.count}}</text>
+        </view>
+      </view>
+    </view>
   </view>
 </view>

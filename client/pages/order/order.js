@@ -4,7 +4,43 @@ const app = getApp();
 
 Page({
   data: {
-    userInfo: null
+    userInfo: null,
+    orders: [
+      {
+        id: 0,
+        list: [{
+          count: 1,
+          image: 'https://shop-dev-1252565845.cos.ap-guangzhou.myqcloud.com/product1.jpg',
+          name: '商品1',
+          price: 50.5,
+        }]
+      },
+      {
+        id: 1,
+        list: [{
+          count: 1,
+          image: 'https://shop-dev-1252565845.cos.ap-guangzhou.myqcloud.com/product1.jpg',
+          name: '商品1',
+          price: 50.5,
+        },
+        {
+          count: 1,
+          image: 'https://shop-dev-1252565845.cos.ap-guangzhou.myqcloud.com/product1.jpg',
+          name: '商品2',
+          price: 50.5,
+        }
+        ]
+      },
+      {
+        id: 2,
+        list: [{
+          count: 1,
+          image: 'https://shop-dev-1252565845.cos.ap-guangzhou.myqcloud.com/product1.jpg',
+          name: '商品2',
+          price: 50.15,
+        }]
+      }
+    ]
   },
   onShow: function () {
     this.refreshUserInfo();
