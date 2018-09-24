@@ -29,7 +29,9 @@ var config = {
         productList: `${host}/weapp/product`,
 
         // fetch product detail
-        productDetail: `${host}/weapp/product/`
+        productDetail: `${host}/weapp/product/`,
+
+        buyProduct: `${host}/weapp/buy`,
     }
 };
 

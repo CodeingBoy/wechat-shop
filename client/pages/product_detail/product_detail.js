@@ -43,10 +43,6 @@ Page({
   onFinishLoadingProductDetail: function() {
     wx.hideLoading();
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function(options) {
     const productId = options.id;
     wx.showLoading({
@@ -54,53 +50,30 @@ Page({
     })
     this.loadProductData(productId);
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
+  onTappedBuyButton: function() {
+    const page = this;
+    qcloud.request({
+      url: config.service.buyProduct,
+      method: 'POST',
+      data: {
+        list: [{
+          id: page.data.product.id,
+          count: 1
+        }]
+      },
+      login: true,
+      success: function(response) {
+        wx.showToast({
+          title: 'Succeed',
+          icon: 'success'
+        });
+      },
+      fail: function(error) {
+        wx.showToast({
+          title: 'Buy failed',
+          icon: 'none'
+        });
+      }
+    })
   }
 })

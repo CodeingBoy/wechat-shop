@@ -30,5 +30,5 @@
 </view>
 <view id="operations">
   <view id="add-to-cart">Add to cart</view>
-  <view id="buy">Buy</view>
+  <view id="buy" bind:tap="onTappedBuyButton">Buy</view>
 </view>
