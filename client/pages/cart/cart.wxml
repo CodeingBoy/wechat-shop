@@ -1,1 +1,20 @@
-<image class="bg" src="/images/bg.png"/>
+<image class="bg" src="/images/bg.png" />
+<view wx:if="{{userInfo == null}}" class="login-prompt">
+  <view class="login-prompt-card">
+    <view class="login-prompt-default-avatar" />
+    <view class="login-prompt-texts">
+      <text class="login-prompt-status">Not logged in</text>
+      <text class="login-prompt-tips">Click "Wechat Login" for more features</text>
+    </view>
+  </view>
+  <button class="wechat-login-button" open-type="getUserInfo" bind:getuserinfo="onTapLoginButton">
+    Wechat Login
+  </button>
+</view>
+<view wx:else>
+  <view id="empty-cart" class="card">
+    <image src="/images/cart.png" id="empty-cart-image" class="image-cart" mode="widthFix" />
+    <text id="empty-cart-text">Cart is empty
+    Go adding something</text>
+  </view>
+</view>

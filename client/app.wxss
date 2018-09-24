@@ -64,4 +64,7 @@ page {
   line-height: 56rpx;
 }
 
-
+.image-cart {
+  width: 88rpx;
+  height: 80rpx;
+}

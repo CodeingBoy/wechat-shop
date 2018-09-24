@@ -1,1 +1,15 @@
-/* pages/cart/cart.wxss */
+#empty-cart{
+  text-align: center;
+  padding: 100rpx 0;
+}
+
+#empty-cart-image{
+  display: block;
+  opacity: 0.3;
+  margin: 0 auto 30rpx auto;
+}
+
+#empty-cart-text{
+  opacity: 0.75;
+  font-size: 30rpx;
+}
