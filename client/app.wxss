@@ -68,3 +68,8 @@ page {
   width: 88rpx;
   height: 80rpx;
 }
+
+.image-order {
+  width: 80rpx;
+  height: 80rpx;
+}

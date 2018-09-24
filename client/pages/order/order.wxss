@@ -1,1 +1,15 @@
-/* pages/order/order.wxss */
+#empty-order{
+  text-align: center;
+  padding: 100rpx 0;
+}
+
+#empty-order-image{
+  display: block;
+  opacity: 0.3;
+  margin: 0 auto 30rpx auto;
+}
+
+#empty-order-text{
+  opacity: 0.75;
+  font-size: 30rpx;
+}
