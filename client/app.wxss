@@ -75,7 +75,28 @@ page {
   height: 80rpx;
 }
 
+.image-check {
+  width: 22rpx;
+  height: 16rpx;
+}
+
 .image-line-black {
   width: 21rpx;
   height: 34rpx;
+}
+
+button.button-reset {
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 0;
+  box-sizing: none;
+  font-size: unset;
+  text-align: left;
+  text-decoration: none;
+  line-height: unset;
+  border-radius: 0;
+  overflow: hidden;
+  color: unset;
+  background-color: unset;
 }

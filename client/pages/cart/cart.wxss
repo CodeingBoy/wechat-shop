@@ -1,15 +1,155 @@
-#empty-cart{
+#empty-cart {
   text-align: center;
   padding: 100rpx 0;
 }
 
-#empty-cart-image{
+#empty-cart-image {
   display: block;
   opacity: 0.3;
   margin: 0 auto 30rpx auto;
 }
 
-#empty-cart-text{
+#empty-cart-text {
   opacity: 0.75;
   font-size: 30rpx;
+}
+
+#cart-operation-top {
+  display: flex;
+}
+
+#cart-info-select-all {
+  flex-grow: 1;
+}
+
+#cart-edit-button {
+  padding: 10rpx 10rpx;
+  font-size: 30rpx;
+  margin-right: 20rpx;
+}
+
+.cart-item {
+  display: flex;
+  font-size: 30rpx;
+  line-height: 42rpx;
+  padding: 20rpx 20rpx;
+}
+
+.cart-item-image {
+  width: 150rpx;
+  margin-right: 20rpx;
+}
+
+.cart-item-detail {
+  position: relative;
+  flex-grow: 1;
+}
+
+.item-info-name-and-price > text {
+  display: block;
+}
+
+.cart-item-count {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+#cart-operation-bottom {
+  width: 100%;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  background-color: white;
+  align-items: center;
+}
+
+#cart-operation-bottom > view, #cart-operation-bottom > button {
+  display: inline-block;
+}
+
+#cart-operation-bottom > view {
+  margin: 0rpx 20rpx;
+}
+
+#cart-select-all-bottom, #cart-select-all-top {
+  flex-grow: 1;
+  font-size: 30rpx;
+}
+
+#cart-select-all-bottom {
+  padding-left: 21rpx;
+}
+
+#cart-select-all-top {
+  margin-left: 38rpx;
+}
+
+#button-checkout {
+  background-color: #f6e15f;
+  padding: 20rpx 50rpx;
+  font-size: 35rpx;
+}
+
+#button-checkout[disabled] {
+  background-color: lightgray;
+}
+
+.cart-image-select-all, .cart-item-select-status {
+  display: inline-block;
+  height: 35rpx;
+  width: 35rpx;
+  border-radius: 50%;
+  background-color: lightgray;
+  margin-right: 5rpx;
+}
+
+.cart-image-selecting-all, .cart-item-selecting {
+  background-color: #f6e15f;
+}
+
+.cart-item-select-status {
+  align-self: center;
+  margin-right: 10rpx;
+}
+
+.cart-image-select-all image, .cart-item-select-status image {
+  padding: 5rpx 8.5rpx;
+}
+
+#cart-items {
+  height: 910rpx;
+  margin-top: 20rpx;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+#cart-total-price {
+  font-size: 30rpx;
+  line-height: 42rpx;
+}
+
+#cart-total-price-text {
+  font-size: 35rpx;
+  line-height: 49rpx;
+}
+
+#cart-item-count-edit {
+  display: flex;
+}
+
+#cart-item-count-edit button {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  border: solid 1px #f6e15f;
+  text-align: center;
+  font-size: 35rpx;
+  line-height: 40rpx;
+  font-weight: bold;
+  margin: 0 20rpx;
 }

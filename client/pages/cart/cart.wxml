@@ -12,9 +12,56 @@
   </button>
 </view>
 <view wx:else>
-  <view id="empty-cart" class="card">
+  <view id="empty-cart" class="card" wx:if="{{!items}}">
     <image src="/images/cart.png" id="empty-cart-image" class="image-cart" mode="widthFix" />
     <text id="empty-cart-text">Cart is empty
     Go adding something</text>
+  </view>
+  <view id="cart-info" wx:else>
+    <view id="cart-operation-top">
+      <view id="cart-select-all-top" bind:tap="onTapSelectAll">
+        <view class="cart-image-select-all {{isSelectingAll ? 'cart-image-selecting-all' : ''}}">
+          <image src="/images/check.png" wx:if="{{isSelectingAll}}" class="image-check" mode="widthFix" />
+        </view>
+        Select all
+      </view>
+      <button id="cart-edit-button" class="button-reset" bind:tap="onTapEdit">
+        {{ isEditing ? 'Finish' : 'Edit'}}
+      </button>
+    </view>
+    <scroll-view scroll-y id="cart-items">
+      <view class="card cart-item" wx:for="{{items}}">
+        <view class="cart-item-select-status {{cartCheckMap[item.id] ? 'cart-item-selecting':''}}" bind:tap="onTapItemSelection" data-id="{{item.id}}">
+          <image src="/images/check.png" wx:if="{{cartCheckMap[item.id]}}" class="image-check" mode="widthFix" />
+        </view>
+        <image class="cart-item-image" src="{{item.image}}" mode="widthFix" />
+        <view class="cart-item-detail">
+          <view class="item-info-name-and-price">
+            <text class="cart-item-name">{{item.name}}</text>
+            <text class="cart-item-price">￥ {{item.price}}</text>
+          </view>
+          <view class="cart-item-count">
+            <text wx:if="{{!isEditing}}">x {{item.count}}</text>
+            <view wx:else id="cart-item-count-edit">
+              <button class="button-reset cart-item-count-decrease" bind:tap="onTapDecreaseItemCount" data-index="{{index}}">-</button>
+              <text>{{item.count}}</text>
+              <button class="button-reset cart-item-count-increase" bind:tap="onTapIncreaseItemCount" data-index="{{index}}">+</button>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+    <view id="cart-operation-bottom">
+      <view id="cart-select-all-bottom" bind:tap="onTapSelectAll">
+        <view class="cart-image-select-all {{isSelectingAll ? 'cart-image-selecting-all' : ''}}">
+          <image src="/images/check.png" wx:if="{{isSelectingAll}}" class="image-check" mode="widthFix" />
+        </view>
+        Select all
+      </view>
+      <view id="cart-total-price">Total:
+        <text id="cart-total-price-text">￥{{totalPrice}}</text>
+      </view>
+      <button id="button-checkout" class="button-reset" disabled="{{totalPrice <= 0}}">Checkout</button>
+    </view>
   </view>
 </view>
