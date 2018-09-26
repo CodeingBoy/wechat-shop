@@ -6,10 +6,11 @@ Page({
   data: {
     userInfo: null,
     items: [],
-    cartCheckMap: [],
+    cartCheckMap: {},
     totalPrice: 233,
     isEditing: false,
-    isSelectingAll: true
+    isSelectingAll: false,
+    selectedCount: 0
   },
   onShow: function() {
     this.refreshUserInfo();
@@ -30,21 +31,26 @@ Page({
   onTapSelectAll: function() {
     var isSelectingAll = !this.data.isSelectingAll;
 
-    const length = this.data.cartCheckMap.length;
-    var newCartCheckMap = new Array(length);
+    const length = this.data.items.length;
+    var newCartCheckMap = {};
     if (isSelectingAll) {
-      for (var i = 1; i < length; i++) {
-        newCartCheckMap[i] = true;
+      for (let i = 0; i < length; i++) {
+        const product = this.data.items[i];
+        newCartCheckMap[product.id] = true;
       }
     } else {
-      for (var i = 1; i < length; i++) {
-        newCartCheckMap[i] = false;
+      for (let i = 0; i < length; i++) {
+        const product = this.data.items[i];
+        newCartCheckMap[product.id] = false;
       }
     }
 
+    var selectedCount = isSelectingAll ? this.data.items.length : 0;
+
     this.setData({
       isSelectingAll: isSelectingAll,
-      cartCheckMap: newCartCheckMap
+      cartCheckMap: newCartCheckMap,
+      selectedCount
     });
   },
   onTapEdit: function() {
@@ -79,21 +85,22 @@ Page({
   },
   onTapItemSelection: function(event) {
     const id = event.currentTarget.dataset.id;
-    const pathText = 'cartCheckMap[' + id + ']';
+    const pathText = 'cartCheckMap.' + id;
     var selected = this.data.cartCheckMap[id];
     if (typeof selected === 'undefined') {
       selected = true;
-    } else {
-      selected = !selected;
     }
-    if (!selected && this.data.isSelectingAll) {
-      this.setData({
-        isSelectingAll: false
-      });
-    }
+    selected = !selected;
+
+    var selectedCount = this.data.selectedCount;
+    selectedCount = selected ? selectedCount + 1 : selectedCount - 1;
+
+    const isSelectingAll = selectedCount >= this.data.items.length;
 
     this.setData({
-      [pathText]: selected
+      [pathText]: selected,
+      selectedCount,
+      isSelectingAll
     });
   },
   refreshCartItems: function() {
@@ -110,6 +117,7 @@ Page({
         page.setData({
           items: response.data.data
         });
+        page.onTapSelectAll();
       },
       fail: function(error) {
         wx.hideLoading();
@@ -118,6 +126,27 @@ Page({
           icon: 'none'
         });
       }
-    })
+    });
+  },
+  updateTotalPrice: function() {
+
+  },
+  updateSelectedCount: function() {
+    const cartCheckMap = this.data.cartCheckMap;
+    const length = this.data.items.length;
+
+    var selectedCount = 0;
+    for (let i = 0; i < length; i++) {
+      const product = cartCheckMap[i];
+      if (cartCheckMap[product.id]) {
+        selectedCount++;
+      }
+    }
+
+    this.setData({
+      selectedCount
+    });
+
+    return selectedCount;
   }
 })
