@@ -61,7 +61,7 @@
       <view id="cart-total-price">Total:
         <text id="cart-total-price-text">￥{{totalPrice}}</text>
       </view>
-      <button id="button-checkout" class="button-reset" disabled="{{totalPrice <= 0}}">Checkout</button>
+      <button id="button-checkout" class="button-reset" disabled="{{totalPrice <= 0}}" bind:tap="onTapCheckout">Checkout</button>
     </view>
   </view>
 </view>

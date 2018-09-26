@@ -209,5 +209,105 @@ Page({
     });
 
     return selectedCount;
+  },
+  onTapCheckout: function() {
+    const items = this.data.items;
+    const itemCount = this.data.items.length;
+    const cartCheckMap = this.data.cartCheckMap;
+
+    var productInfos = [];
+    for (let id in cartCheckMap) {
+      if (!cartCheckMap[id]) {
+        continue;
+      }
+      for (let i = 0; i < itemCount; i++) {
+        const product = items[i];
+        if (product.id == id) {
+          productInfos.push({
+            id: product.id,
+            count: product.count
+          });
+          break;
+        }
+      }
+    }
+
+    const page = this;
+    qcloud.request({
+      url: config.service.buyProduct,
+      method: 'POST',
+      login: true,
+      data: {
+        list: productInfos
+      },
+      success: function(response) {
+        wx.showToast({
+          title: 'Success',
+          icon: 'success'
+        });
+
+        var productIds = productInfos.map(function(p) {
+          return p.id;
+        });
+        page.removeItems(productIds);
+      },
+      fail: function(error) {
+        wx.showModal({
+          title: 'Order failed',
+          content: 'Fail processing your order, please try again later'
+        });
+      }
+    })
+  },
+  removeItems: function(productIds) {
+    const items = this.data.items;
+    const cartCheckMap = this.data.cartCheckMap;
+    const idCount = productIds.length;
+    var selectedCount = this.data.selectedCount;
+
+    for (let i = 0; i < idCount; i++) {
+      const productId = productIds[i];
+      delete cartCheckMap[productId];
+      for (let i = 0; i < items.length; i++) {
+        if (items[i].id == productId) {
+          items.splice(i, 1);
+          break;
+        }
+      }
+      selectedCount--;
+    }
+
+    this.setData({
+      items,
+      cartCheckMap,
+      selectedCount
+    });
+
+    this.updateTotalPrice();
+
+    var productInfos = items.map(function(p) {
+      return {
+        id: p.id,
+        count: p.count
+      };
+    });
+
+    qcloud.request({
+      url: config.service.updateCart,
+      method: 'PUT',
+      login: true,
+      data: {
+        list: productInfos
+      },
+      success: function(response) {
+
+      },
+      fail: function(error) {
+        wx.showToast({
+          title: 'Clear cart failed',
+          icon: 'none'
+        });
+      }
+    });
   }
 })
