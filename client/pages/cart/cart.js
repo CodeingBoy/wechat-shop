@@ -7,7 +7,7 @@ Page({
     userInfo: null,
     items: [],
     cartCheckMap: {},
-    totalPrice: 233,
+    totalPrice: 0,
     isEditing: false,
     isSelectingAll: false,
     selectedCount: 0
@@ -52,6 +52,8 @@ Page({
       cartCheckMap: newCartCheckMap,
       selectedCount
     });
+
+    this.updateTotalPrice();
   },
   onTapEdit: function() {
     this.setData({
@@ -65,6 +67,8 @@ Page({
     this.setData({
       [pathText]: newCount
     });
+
+    this.updateTotalPrice();
   },
   onTapDecreaseItemCount: function(event) {
     const index = event.currentTarget.dataset.index;
@@ -82,6 +86,8 @@ Page({
     this.setData({
       [pathText]: newCount
     });
+
+    this.updateTotalPrice();
   },
   onTapItemSelection: function(event) {
     const id = event.currentTarget.dataset.id;
@@ -102,6 +108,8 @@ Page({
       selectedCount,
       isSelectingAll
     });
+
+    this.updateTotalPrice();
   },
   refreshCartItems: function() {
     wx.showLoading({
@@ -129,7 +137,23 @@ Page({
     });
   },
   updateTotalPrice: function() {
+    var totalPrice = 0;
+    const itemCount = this.data.items.length;
+    for (let id in this.data.cartCheckMap) {
+      if (this.data.cartCheckMap[id]) {
+        for (let i = 0; i < itemCount; i++) {
+          const product = this.data.items[i];
+          if (product.id == id) {
+            totalPrice += product.price * product.count;
+            break;
+          }
+        }
+      }
+    }
 
+    this.setData({
+      totalPrice: totalPrice.toFixed(2)
+    });
   },
   updateSelectedCount: function() {
     const cartCheckMap = this.data.cartCheckMap;
