@@ -18,17 +18,17 @@ Page({
     this.loadProducts();
   },
 
-  loadProducts: function(callback){
+  loadProducts: function(callback) {
     wx.showLoading({
       title: 'Loading'
     });
 
-    const onFinishLoading = function () {
+    const onFinishLoading = function() {
       wx.hideLoading();
       typeof callback === 'function' && callback();
     };
 
-    const onFailLoadingProducts = function(){
+    const onFailLoadingProducts = function() {
       wx.showToast({
         title: 'Fail loading products',
         icon: 'none'
@@ -38,7 +38,7 @@ Page({
     const page = this;
     qcloud.request({
       url: config.service.productList,
-      success: function (response) {
+      success: function(response) {
         if (response.data.code != 0) {
           onFailLoadingProducts();
           console.log(response);
@@ -54,12 +54,43 @@ Page({
 
         onFinishLoading();
       },
-      fail: function (err) {
+      fail: function(err) {
         console.log(err);
 
         onFinishLoading();
         onFailLoadingProducts();
       }
     });
+  },
+  onTapAddToCart: function(event) {
+    wx.showLoading({
+      title: 'Adding'
+    });
+
+    const index = event.currentTarget.dataset.index;
+    const product = this.data.productList[index];
+
+    qcloud.request({
+      url: config.service.addProductToCart,
+      method: 'POST',
+      login: true,
+      data: {
+        productId: product.id
+      },
+      success: function(response) {
+        wx.hideLoading();
+        wx.showToast({
+          title: 'Success',
+          icon: 'success'
+        });
+      },
+      fail: function(error) {
+        wx.hideLoading();
+        wx.showToast({
+          title: 'Fail adding to cart, please try again later',
+          icon: 'none'
+        });
+      }
+    })
   }
 })

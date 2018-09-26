@@ -28,7 +28,7 @@
         <view class="price-tag">￥</view>
         {{item.price}}
       </view>
-      <view class="add-product-to-cart">
+      <view class="add-product-to-cart" catch:tap="onTapAddToCart" data-index="{{index}}">
         +
       </view>
     </view>
