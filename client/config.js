@@ -35,6 +35,8 @@ var config = {
 
         orderList: `${host}/weapp/order`,
 
+        getCartItems: `${host}/weapp/cart`,
+
         addProductToCart: `${host}/weapp/cart/add`
     }
 };

@@ -43,7 +43,7 @@ router.get('/product/:id', controllers.product.detail);
 router.post('/buy', validationMiddleware, controllers.order.add);
 router.get('/order', validationMiddleware, controllers.order.list);
 
-//router.get('/cart', validationMiddleware, controllers.cart.list);
+router.get('/cart', validationMiddleware, controllers.cart.list);
 router.post('/cart/add', validationMiddleware, controllers.cart.add);
 
 module.exports = router

@@ -5,64 +5,21 @@ const app = getApp();
 Page({
   data: {
     userInfo: null,
-    items: [{
-        id: 1,
-        name: '商品1',
-        image: 'https://s3.cn-north-1.amazonaws.com.cn/u-img/product1.jpg',
-        price: 45,
-        source: '海外·瑞典',
-        count: 1,
-      }, {
-        id: 2,
-        name: '商品2',
-        image: 'https://s3.cn-north-1.amazonaws.com.cn/u-img/product2.jpg',
-        price: 158,
-        source: '海外·新西兰',
-        count: 3,
-      },
-      {
-        id: 1,
-        name: '商品1',
-        image: 'https://s3.cn-north-1.amazonaws.com.cn/u-img/product1.jpg',
-        price: 45,
-        source: '海外·瑞典',
-        count: 1,
-      }, {
-        id: 2,
-        name: '商品2',
-        image: 'https://s3.cn-north-1.amazonaws.com.cn/u-img/product2.jpg',
-        price: 158,
-        source: '海外·新西兰',
-        count: 3,
-      },
-      {
-        id: 1,
-        name: '商品1',
-        image: 'https://s3.cn-north-1.amazonaws.com.cn/u-img/product1.jpg',
-        price: 45,
-        source: '海外·瑞典',
-        count: 1,
-      }, {
-        id: 2,
-        name: '商品2',
-        image: 'https://s3.cn-north-1.amazonaws.com.cn/u-img/product2.jpg',
-        price: 158,
-        source: '海外·新西兰',
-        count: 3,
-      }
-    ],
-    cartCheckMap: [undefined, true, undefined],
+    items: [],
+    cartCheckMap: [],
     totalPrice: 233,
     isEditing: false,
     isSelectingAll: true
   },
   onShow: function() {
     this.refreshUserInfo();
+    this.refreshCartItems();
   },
   onTapLoginButton: function(response) {
     const page = this;
     app.onTapLoginButton(response, function(response) {
       page.refreshUserInfo();
+      page.refreshCartItems();
     });
   },
   refreshUserInfo: function() {
@@ -138,5 +95,29 @@ Page({
     this.setData({
       [pathText]: selected
     });
+  },
+  refreshCartItems: function() {
+    wx.showLoading({
+      title: 'Loading'
+    });
+
+    const page = this;
+    qcloud.request({
+      url: config.service.getCartItems,
+      login: true,
+      success: function(response) {
+        wx.hideLoading();
+        page.setData({
+          items: response.data.data
+        });
+      },
+      fail: function(error) {
+        wx.hideLoading();
+        wx.showToast({
+          title: 'Fail loading cart items, please try again later',
+          icon: 'none'
+        });
+      }
+    })
   }
 })

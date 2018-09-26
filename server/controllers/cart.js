@@ -12,5 +12,12 @@ module.exports = {
     } else {
       await db.query("UPDATE cart_user SET count = count + 1 WHERE id = ? AND user = ?", [productId, userId]);
     }
+  },
+  list: async ctx => {
+    const userId = ctx.state.$wxInfo.userinfo.openId;
+
+    const cartItems = await db.query("SELECT p.*, c.count FROM cart_user AS c JOIN product AS p ON c.id = p.id WHERE c.user = ?", [userId]);
+
+    ctx.state.data = cartItems;
   }
 };
