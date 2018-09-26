@@ -75,9 +75,18 @@ Page({
     const newCount = this.data.items[index].count - 1;
     if (newCount <= 0) {
       var items = this.data.items;
+      const productId = items[index].id;
       items.splice(index, 1);
+
+      var selectedCount = this.data.selectedCount - 1;
+      var cartCheckMap = this.data.cartCheckMap;
+
+      delete cartCheckMap[productId];
+
       this.setData({
-        items: items
+        items,
+        selectedCount,
+        cartCheckMap
       });
       return;
     }
