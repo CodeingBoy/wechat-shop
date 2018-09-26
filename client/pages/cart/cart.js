@@ -56,9 +56,37 @@ Page({
     this.updateTotalPrice();
   },
   onTapEdit: function() {
+    if (this.data.isEditing) {
+      var productInfos = this.data.items.map(function(p) {
+        return {
+          id: p.id,
+          count: p.count
+        }
+      });
+
+      qcloud.request({
+        url: config.service.updateCart,
+        method: 'PUT',
+        login: true,
+        data: {
+          list: productInfos
+        },
+        success: function(response) {
+
+        },
+        fail: function(error) {
+          wx.showToast({
+            title: 'Network error',
+            icon: 'none'
+          });
+        }
+      })
+    }
+
     this.setData({
       isEditing: !this.data.isEditing
     });
+    this.updateTotalPrice();
   },
   onTapIncreaseItemCount: function(event) {
     const index = event.currentTarget.dataset.index;

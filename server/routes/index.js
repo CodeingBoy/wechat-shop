@@ -45,5 +45,6 @@ router.get('/order', validationMiddleware, controllers.order.list);
 
 router.get('/cart', validationMiddleware, controllers.cart.list);
 router.post('/cart/add', validationMiddleware, controllers.cart.add);
+router.put('/cart/update', validationMiddleware, controllers.cart.update);
 
 module.exports = router
