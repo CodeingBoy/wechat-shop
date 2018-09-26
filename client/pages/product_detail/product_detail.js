@@ -1,6 +1,7 @@
 // pages/product_detail.js
 const qcloud = require('../../vendor/wafer2-client-sdk/index.js');
 const config = require('../../config.js');
+const app = getApp();
 
 Page({
 
@@ -75,5 +76,37 @@ Page({
         });
       }
     })
+  },
+  onTappedAddToCart: function() {
+    const productId = this.data.product.id;
+    const userInfo = app.getUserInfo();
+    if (!userInfo) {
+      wx.showModal({
+        title: 'Not logged in',
+        content: 'You did not logged in as an user, please login first'
+      });
+      return;
+    }
+
+    qcloud.request({
+      url: config.service.addProductToCart,
+      method: 'POST',
+      login: true,
+      data: {
+        productId: productId
+      },
+      success: function(response) {
+        wx.showToast({
+          title: 'Succeed',
+          icon: 'succeed'
+        });
+      },
+      fail: function() {
+        wx.showToast({
+          title: 'Add failed, please try again later',
+          icon: 'none'
+        });
+      }
+    });
   }
 })
