@@ -28,7 +28,7 @@
             <text class="item-info-name">{{item.name}}</text>
             <text class="item-info-price">￥{{item.price}}</text>
           </view>
-          <button class="item-info-comment-button">Comment</button>
+          <button class="item-info-comment-button" bind:tap="onTapComment" data-id="{{item.id}}">Comment</button>
           <text class="item-info-count">x{{item.count}}</text>
         </view>
       </view>

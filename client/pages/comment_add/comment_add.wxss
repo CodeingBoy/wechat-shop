@@ -1,0 +1,54 @@
+page > view {
+  background-color: white;
+}
+
+#product-info {
+  display: flex;
+  font-size: 30rpx;
+  padding: 20rpx 20rpx;
+  margin-bottom: 20rpx;
+}
+
+#product-info-image-wrapper {
+  flex-grow: 0;
+  margin-right: 20rpx;
+}
+
+#product-info-image {
+  width: 175rpx;
+}
+
+#product-info-detail {
+  flex-grow: 1;
+}
+
+#product-info-detail-name {
+  margin-bottom: 10rpx;
+}
+
+#product-info-detail-price {
+  font-weight: bold;
+}
+
+#comment-input-wrapper {
+  padding: 20rpx 30rpx;
+  font-size: 30rpx;
+  position: relative;
+}
+
+#comment-input {
+  opacity: 0.75;
+  margin-bottom: 10rpx;
+  width: 100%;
+}
+
+.comment-input-placeholder {
+}
+
+#button-submit {
+  background-color: #f8e14f;
+  padding: 15rpx 20rpx;
+  margin: 0 auto;
+  width: 300rpx;
+  text-align: center;
+}

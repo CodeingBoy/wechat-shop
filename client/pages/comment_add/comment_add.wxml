@@ -1,0 +1,18 @@
+<view id="product-info">
+  <view id="product-info-image-wrapper">
+    <image id="product-info-image" src="{{product.image}}" mode="widthFix" />
+  </view>
+  <view id="product-info-detail">
+    <view id="product-info-detail-name">
+      {{product.name}}
+    </view>
+    <view id="product-info-detail-price">
+      ¥ {{product.price}}
+    </view>
+  </view>
+</view>
+<view class="card" id="comment-input-wrapper" type="text" confirm-type="done" focus>
+  <textarea id="comment-input" placeholder="Please fill your comment here" />
+  <image src="/images/image.png" class="image-image" mode="widthFix" />
+</view>
+<button class="button-reset" id="button-submit" bind:tap="onSubmit">Submit</button>

@@ -85,6 +85,11 @@ page {
   height: 34rpx;
 }
 
+.image-image{
+  width: 43rpx;
+  height: 43rpx;
+}
+
 button.button-reset {
   position: relative;
   display: block;

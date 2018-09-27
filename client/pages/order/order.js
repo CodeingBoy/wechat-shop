@@ -17,7 +17,7 @@ Page({
     app.onTapLoginButton(response, function(response) {
       page.refreshUserInfo(() => {
         page.refreshUserOrders();
-      });      
+      });
     });
   },
   refreshUserInfo: function(succeed, fail) {
@@ -45,5 +45,11 @@ Page({
 
       }
     })
+  },
+  onTapComment: function(event) {
+    const productId = event.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '/pages/comment_add/comment_add?id=' + productId
+    });
   }
 })
