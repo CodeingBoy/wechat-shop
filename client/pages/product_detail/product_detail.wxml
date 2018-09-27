@@ -15,7 +15,7 @@
       <image class="icon-check" src="/images/check-yellow.png" /> Send within 24 hours with free shipping assurance
     </view>
   </view>
-  <view id="comments">
+  <view id="comments" bind:tap="onTapComments">
     <view id="comments-info">
       <text id="comments-info-title">Comments</text>
       <view id="comments-count">

@@ -4,7 +4,8 @@
     "pages/order/order",
     "pages/cart/cart",
     "pages/user/user",
-    "pages/product_detail/product_detail"
+    "pages/product_detail/product_detail",
+    "pages/comment/comment"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

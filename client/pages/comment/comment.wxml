@@ -1,0 +1,34 @@
+<view id="product-info">
+  <view id="product-info-image-wrapper">
+    <image id="product-info-image" src="{{product.image}}" mode="widthFix" />
+  </view>
+  <view id="product-info-detail">
+    <view id="product-info-detail-name">
+      {{product.name}}
+    </view>
+    <view id="product-info-detail-price">
+      ¥ {{product.price}}
+    </view>
+  </view>
+</view>
+<view id="comments">
+  <view id="comments-count">
+    {{comments.length}} comment{{comments.length > 1?'s':''}}
+  </view>
+  <view class="comment" wx:for="{{comments}}">
+    <view class="comment-user-avatar-wrapper">
+      <image class="comment-user-avatar" src="{{item.userAvatarUrl}}" mode="widthFix" />
+    </view>
+    <view class="comment-info">
+      <view class="comment-info-username">
+        {{item.userName}}
+      </view>
+      <view class="comment-info-content">
+        {{item.content}}
+      </view>
+      <view class="comment-info-time">
+        {{item.time}}
+      </view>
+    </view>
+  </view>
+</view>

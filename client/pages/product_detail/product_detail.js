@@ -108,5 +108,10 @@ Page({
         });
       }
     });
+  },
+  onTapComments: function() {
+    wx.navigateTo({
+      url: '/pages/comment/comment?id=' + this.data.product.id
+    });
   }
 })
