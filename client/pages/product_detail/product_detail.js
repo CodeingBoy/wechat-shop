@@ -10,6 +10,10 @@ Page({
    */
   data: {
     product: {},
+    commentSummary: {
+      count: 0,
+      latestComment: ''
+    }
   },
   loadProductData: function(productId) {
     const page = this;
@@ -50,6 +54,7 @@ Page({
       title: 'Loading',
     })
     this.loadProductData(productId);
+    this.loadCommentSummary(productId);
   },
   onTappedBuyButton: function() {
     const page = this;
@@ -112,6 +117,23 @@ Page({
   onTapComments: function() {
     wx.navigateTo({
       url: '/pages/comment/comment?id=' + this.data.product.id
+    });
+  },
+  loadCommentSummary: function (productId){
+    const page = this;
+    qcloud.request({
+      url: config.service.getCommentSummary + productId,
+      success: function(response){
+        page.setData({
+          commentSummary: response.data.data
+        });
+      },
+      fail: function(){
+        wx.showToast({
+          title: 'Fail loading comments',
+          icon: 'none'
+        });
+      }
     });
   }
 })

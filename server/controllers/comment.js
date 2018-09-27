@@ -13,7 +13,7 @@ module.exports = {
   get: async ctx => {
     const productId = Number(ctx.params.id);
     const comments = await db.query("SELECT * FROM comment WHERE product_id = ?", [productId]);
-    ctx.state.data = comments.map(function(c){
+    ctx.state.data = comments.map(function(c) {
       return {
         userAvatarUrl: c.avatar,
         userName: c.username,
@@ -21,5 +21,18 @@ module.exports = {
         content: c.content
       }
     });
+  },
+  getSummary: async ctx => {
+    var result = {};
+
+    const productId = Number(ctx.params.id);
+    const commentCount = await db.query("SELECT COUNT(*) FROM comment WHERE product_id = ?", [productId]);
+    result.count = commentCount[0]['COUNT(*)'];
+
+    if (result.count > 0) {
+      const latestComment = await db.query("SELECT * FROM comment WHERE product_id = ? ORDER BY create_time LIMIT 0, 1", [productId]);
+      result.latestComment = latestComment[0].content;
+    }
+    ctx.state.data = result;
   }
 };

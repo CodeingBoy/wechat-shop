@@ -19,12 +19,12 @@
     <view id="comments-info">
       <text id="comments-info-title">Comments</text>
       <view id="comments-count">
-      666 comments
+      {{commentSummary.count}} comment{{commentSummary.count > 1?'s':''}}
       <image src="/images/grey-arrow.png" class="icon-grey-arrow" />
       </view>
     </view>
     <view class="comment">
-      test
+      {{commentSummary.latestComment}}
     </view>
   </view>
 </view>

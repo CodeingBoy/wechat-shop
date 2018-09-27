@@ -42,6 +42,7 @@ var config = {
     updateCart: `${host}/weapp/cart/update`,
 
     getComments: `${host}/weapp/comment/product/`,
+    getCommentSummary: `${host}/weapp/comment/summary/product/`,
     addComment: `${host}/weapp/comment`
   }
 };
