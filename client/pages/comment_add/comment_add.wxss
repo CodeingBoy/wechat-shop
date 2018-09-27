@@ -52,3 +52,20 @@ page > view {
   width: 300rpx;
   text-align: center;
 }
+
+#comment-image-section {
+  display: flex;
+}
+
+#comment-images {
+  text-align: right;
+  flex-grow: 1;
+}
+
+#choose-image {
+  flex-grow: 0;
+}
+
+.comment-image {
+  width: 100rpx;
+}

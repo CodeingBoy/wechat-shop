@@ -12,9 +12,14 @@
   </view>
 </view>
 <form bind:submit="onSubmit">
-<view class="card" id="comment-input-wrapper" type="text" confirm-type="done" focus>
-  <textarea name="content" id="comment-input" placeholder="Please fill your comment here" />
-  <image src="/images/image.png" class="image-image" mode="widthFix" bind:tap="onTapChooseImage" />
-</view>
-<button class="button-reset" id="button-submit" formType ="submit">Submit</button>
+  <view class="card" id="comment-input-wrapper" type="text" confirm-type="done" focus>
+    <textarea name="content" id="comment-input" placeholder="Please fill your comment here" />
+    <view id="comment-image-section">
+    <image src="/images/image.png" class="image-image" id="choose-image" mode="widthFix" bind:tap="onTapChooseImage" />
+    <view id="comment-images">
+      <image wx:for="{{images}}" src="{{item}}" class="comment-image" mode="widthFix" data-image-path="{{item}}" bind:tap="onTapImages" />
+    </view>
+    </view>
+  </view>
+  <button class="button-reset" id="button-submit" formType="submit">Submit</button>
 </form>
