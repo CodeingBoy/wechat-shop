@@ -48,6 +48,6 @@ router.post('/cart/add', validationMiddleware, controllers.cart.add);
 router.put('/cart/update', validationMiddleware, controllers.cart.update);
 
 router.post('/comment', validationMiddleware, controllers.comment.add);
-router.get('/comment/:id', controllers.comment.get);
+router.get('/comment/product/:id', controllers.comment.get);
 
 module.exports = router
