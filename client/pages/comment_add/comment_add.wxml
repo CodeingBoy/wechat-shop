@@ -11,8 +11,10 @@
     </view>
   </view>
 </view>
+<form bind:submit="onSubmit">
 <view class="card" id="comment-input-wrapper" type="text" confirm-type="done" focus>
-  <textarea id="comment-input" placeholder="Please fill your comment here" />
-  <image src="/images/image.png" class="image-image" mode="widthFix" />
+  <textarea name="content" id="comment-input" placeholder="Please fill your comment here" />
+  <image src="/images/image.png" class="image-image" mode="widthFix" bind:tap="onTapChooseImage" />
 </view>
-<button class="button-reset" id="button-submit" bind:tap="onSubmit">Submit</button>
+<button class="button-reset" id="button-submit" formType ="submit">Submit</button>
+</form>

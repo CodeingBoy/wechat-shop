@@ -39,7 +39,9 @@ var config = {
 
         addProductToCart: `${host}/weapp/cart/add`,
 
-        updateCart: `${host}/weapp/cart/update`
+        updateCart: `${host}/weapp/cart/update`,
+
+        addComment: `${host}/weapp/comment`
     }
 };
 

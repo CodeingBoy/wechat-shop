@@ -47,4 +47,6 @@ router.get('/cart', validationMiddleware, controllers.cart.list);
 router.post('/cart/add', validationMiddleware, controllers.cart.add);
 router.put('/cart/update', validationMiddleware, controllers.cart.update);
 
+router.post('/comment', validationMiddleware, controllers.comment.add);
+
 module.exports = router
