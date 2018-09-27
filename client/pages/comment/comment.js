@@ -5,16 +5,12 @@ const app = getApp();
 Page({
   data: {
     product: {},
-    comments: [{
-      userAvatarUrl: 'https://shop-dev-1252565845.cos.ap-guangzhou.myqcloud.com/product6.jpg',
-      userName: 'abc',
-      time: '2018-09-26',
-      content: 'Great product!'
-    }]
+    comments: []
   },
   onLoad: function(options) {
     const productId = options.id;
     this.loadProductData(productId);
+    this.loadComments(productId);
   },
   loadProductData: function(productId) {
     const page = this;
@@ -35,5 +31,23 @@ Page({
       }
     });
   },
-  loadComments: function(productId) {}
+  loadComments: function(productId) {
+    const page = this;
+    qcloud.request({
+      url: config.service.getComments + productId,
+      success: function(response){
+        const comments = response.data.data;
+        page.setData({
+          comments
+        });
+      },
+      fail: function(error){
+        wx.showToast({
+          title: 'Load comments failed, please try again later',
+          icon: 'none'
+        });
+        wx.navigateBack();
+      }
+    })
+  }
 });

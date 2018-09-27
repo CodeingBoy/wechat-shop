@@ -10,8 +10,16 @@ module.exports = {
 
     await db.query("INSERT INTO comment(user, username, avatar, content, images, product_id, create_time) VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)", [userId, username, avatarUrl, content, null, productId]);
   },
-  list: async ctx => {
+  get: async ctx => {
+    const productId = Number(ctx.params.id);
     const comments = await db.query("SELECT * FROM comment WHERE product_id = ?", [productId]);
-    ctx.state.data = comments;
+    ctx.state.data = comments.map(function(c){
+      return {
+        userAvatarUrl: c.avatar,
+        userName: c.username,
+        time: c.create_time.toISOString().substr(0, 10),
+        content: c.content
+      }
+    });
   }
 };
