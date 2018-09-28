@@ -98,8 +98,18 @@ Page({
     wx.chooseImage({
       count: 3,
       success: function(res) {
+        var images = page.data.images;
+        const chosenImageCount = res.tempFilePaths.length;
+
+        for (let i = 0; i < chosenImageCount; i++) {
+          images.push(res.tempFilePaths[i]);
+        }
+        if (images.length > 3) {
+          images = images.slice(images.length - 3);
+        }
+
         page.setData({
-          images: res.tempFilePaths
+          images
         });
       },
     });

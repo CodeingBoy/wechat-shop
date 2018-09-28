@@ -68,4 +68,5 @@ page > view {
 
 .comment-image {
   width: 100rpx;
+  margin-left: 10rpx;
 }
