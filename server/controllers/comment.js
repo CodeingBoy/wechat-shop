@@ -20,12 +20,18 @@ module.exports = {
     const productId = Number(ctx.params.id);
     const comments = await db.query("SELECT * FROM comment WHERE product_id = ?", [productId]);
     ctx.state.data = comments.map(function(c) {
-      return {
+      var result = {
         userAvatarUrl: c.avatar,
         userName: c.username,
         time: c.create_time.toISOString().substr(0, 10),
         content: c.content
+      };
+      if (c.images) {
+        result.images = c.images.split(';;').filter(function(i) {
+          return Boolean(i);
+        });
       }
+      return result;
     });
   },
   getSummary: async ctx => {

@@ -13,7 +13,7 @@
 </view>
 <view id="comments">
   <view id="comments-count">
-    {{comments.length}} comment{{comments.length > 1?'s':''}}
+    {{comments.length}} comment{{comments.length > 1 ? 's' : ''}}
   </view>
   <view class="comment" wx:for="{{comments}}">
     <view class="comment-user-avatar-wrapper">
@@ -25,6 +25,11 @@
       </view>
       <view class="comment-info-content">
         {{item.content}}
+      </view>
+      <view class="comment-info-images" wx:if="{{item.images}}">
+        <view class="comment-images" wx:for="{{item.images}}" wx:for-item="image">
+          <image class="comment-image" src="{{image}}" mode="widthFix" bind:tap="onTapImage" data-image-path="{{image}}" data-images="{{item.images}}" />
+        </view>
       </view>
       <view class="comment-info-time">
         {{item.time}}

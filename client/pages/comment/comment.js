@@ -35,13 +35,13 @@ Page({
     const page = this;
     qcloud.request({
       url: config.service.getComments + productId,
-      success: function(response){
+      success: function(response) {
         const comments = response.data.data;
         page.setData({
           comments
         });
       },
-      fail: function(error){
+      fail: function(error) {
         wx.showToast({
           title: 'Load comments failed, please try again later',
           icon: 'none'
@@ -49,5 +49,13 @@ Page({
         wx.navigateBack();
       }
     })
+  },
+  onTapImage: function(event) {
+    const image = event.currentTarget.dataset.imagePath,
+      images = event.currentTarget.dataset.images;
+    wx.previewImage({
+      urls: images,
+      current: image
+    });
   }
 });
